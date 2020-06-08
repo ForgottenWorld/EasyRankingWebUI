@@ -137,7 +137,7 @@
 
 .leaderboards-grid-important > .leaderboards-cell:first-child {
   background: rgb(15,95,93);
-  background: linear-gradient(45deg, rgba(26,0,68,0.8) 0%, rgba(59,0,187,0.8) 35%, rgba(141,0,255,0.8) 100%), url(/img/pvp.png);
+  background: linear-gradient(45deg, rgba(26,0,68,0.8) 0%, rgba(59,0,187,0.8) 35%, rgba(141,0,255,0.8) 100%), url("img/pvp.png");
   background-position: center; 
 }
 
