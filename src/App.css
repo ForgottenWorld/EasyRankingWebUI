@@ -6,23 +6,26 @@
 }
 
 .app {
+  background-color: #222222;
   text-align: center;
   font-family: Montserrat, sans-serif;
   font-weight: 300;
+  min-height: 100vh;
 }
 
 .app-header {
-  background-color: #282c34;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
-  flex-direction: column;
+  padding: 16px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
   color: white;
+  background-color: rgba(255,255,255,0.2);
 }
 
 .app-body {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,8 +35,9 @@
 .leaderboards-grid {
   display: flex;
   flex: 1 1 auto;
+  margin-top: 32px;
   flex-direction: column;
-  min-width: 400px;
+  min-width: 300px;
   max-width: 1000px;
 }
 
@@ -72,12 +76,16 @@
   border-radius: 4px;
   background-color: red;
   padding: 24px 8px 8px 8px;
-  transition: box-shadow ease-in 200ms;
+  transition: box-shadow ease-in 200ms, opacity ease-in 200ms;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4), 0 0 0 0px rgba(255,255,255,0);
 }
 
 .leaderboards-cell:hover {
   box-shadow: 0 4px 4px 0 rgba(0,0,0,0), 0 0 0 4px rgba(255,255,255,0.8);
+}
+
+.leaderboards-cell.translucent {
+  opacity: 0.2;
 }
 
 .leaderboards-cell-list {
