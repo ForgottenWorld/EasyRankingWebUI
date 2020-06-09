@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
 
+@font-face {
+  font-family: Minecrafter;
+  src: url("fonts/minecrafter.ttf");
+}
+
 .app {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-weight: 300;
 }
 
@@ -26,14 +31,16 @@
 
 .leaderboards-grid {
   display: flex;
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   flex-direction: column;
   min-width: 400px;
+  max-width: 1000px;
 }
 
 .leaderboards-grid-important {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .leaderboards-grid-default {
@@ -44,34 +51,39 @@
 
 .leaderboards-grid-default > .leaderboards-cell {
   display: flex;
-  flex: 0 1 calc( 32% - 20px );
+  flex: 1 1 30%;
+  box-sizing: border-box;
 }
 
 .leaderboards-grid-important > .leaderboards-cell {
   display: flex;
-  flex: 0 1 50%;
+  flex: 1 1 46.5%;
 }
 
 .leaderboards-cell {
+  font-family: Minecrafter;
+  font-size: 2rem;
   color: white;
-  text-shadow: 0 1px 2px rgba(0,0,0,1);
+  text-shadow: 0 4px 0px rgba(0,0,0,0.2);
   display: flex;
   flex-direction: column;
   margin: 8px;
   font-weight: 600;
   border-radius: 4px;
   background-color: red;
-  padding: 8px;
+  padding: 24px 8px 8px 8px;
   transition: box-shadow ease-in 200ms;
-  box-shadow: 0 0 0 4px rgba(255,255,255,0), 0 4px 4px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4), 0 0 0 0px rgba(255,255,255,0);
 }
 
 .leaderboards-cell:hover {
-  box-shadow: 0 0 0 4px rgba(255,255,255,0.75), 0 4px 4px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0), 0 0 0 4px rgba(255,255,255,0.8);
 }
 
 .leaderboards-cell-list {
+  font-family: Montserrat;
   font-weight: 400;
+  font-size: 1rem;
   margin-top: 16px;
   border-radius: 4px;
   box-shadow: inset 0 0px 2px 2px rgba(0,0,0,0.1);
@@ -91,15 +103,7 @@
 }
 
 .leaderboards-top3 > div::before {
-  content: " ";
-  justify-self: flex-start;
-  font-size: 20px;
-  width: 10px;
-  height: 10px;
-  background-color: white;
-  border-radius: 5px;
-  margin-left: 4px;
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.4);
+  content: "";
 }
 
 .leaderboards-top3 > div:first-child {
@@ -124,15 +128,24 @@
 }
 
 .leaderboards-top3 > div:nth-child(1)::before {
-  background-color: gold;
+  width: 40px;
+  height: 40px;
+  margin-left: 0px;
+  background-image: url(img/medals/gold-medal.png)
 }
 
 .leaderboards-top3 > div:nth-child(2)::before {
-  background-color: silver;
+  width: 20px;
+  height: 20px;
+  margin-left:10px;
+  background-image: url(img/medals/silver-medal.png)
 }
 
 .leaderboards-top3 > div:nth-child(3)::before {
-  background-color: burlywood
+  width: 20px;
+  height: 20px;
+  margin-left:10px;
+  background-image: url(img/medals/bronze-medal.png)
 }
 
 .leaderboards-grid-important > .leaderboards-cell:first-child {
@@ -174,4 +187,15 @@
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 6) {
   background: rgb(0,97,71);
   background: linear-gradient(45deg, rgba(0,97,71,1) 0%, rgba(15,208,118,1) 35%, rgba(192,255,217,1) 100%); 
+}
+
+.lb-score {
+  width: 70px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  padding: 4px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
