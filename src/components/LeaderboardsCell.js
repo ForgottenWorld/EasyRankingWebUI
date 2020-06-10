@@ -17,14 +17,15 @@ class LeaderboardsCell extends React.Component {
         return (
             <ReactVisibilitySensor onChange={(isVisible) => this.setState({translucent: isVisible})}>
                 <div 
-                    onClick={() => this.selectCategory(this.props.cellId)}
+                    onClick={() => this.selectCategory(this.props.category.id)}
                     className={`leaderboards-cell ${this.state.translucent ? "" : "translucent"}`}>
-                    TEST
+                    {this.props.category.name}
                     <div className="leaderboards-cell-list">
                         <div className="leaderboards-top3">
-                            <div>TIZIO<span className="lb-score">123456</span></div>
-                            <div>CAIO<span className="lb-score">123456</span></div>
-                            <div>SEMPRONIO<span className="lb-score">123456</span></div>
+                            {this.props.category.players.slice(0, 3).map(p =>
+                                <div><span className="leaderboards-top3-player-name">{this.props.players[p.uuid].name}</span>
+                                <span className="lb-score">{p.score} {this.props.category.suffix}</span></div>
+                            )}
                         </div>
                     </div>
                 </div>

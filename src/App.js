@@ -4,22 +4,6 @@ import LeaderboardsGrid from './components/LeaderboardsGrid';
 import logo from './img/logo.png';
 import Leaderboard from './components/Leaderboard';
 
-let erData;
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'https://easyranking.chillstudio.it/get/data');
-xhr.responseType = 'text/json';
-xhr.send();
-xhr.onload = () => {
-  if (xhr.status != 200) {
-    alert(`Error ${xhr.status}: ${xhr.statusText}`);
-  } else {
-    erData = JSON.parse(xhr.response);
-    alert(xhr.response);
-  }
-};
-xhr.onerror = function() {
-  alert("Request failed");
-};
 
 class App extends React.Component {
 
@@ -29,7 +13,9 @@ class App extends React.Component {
     this.state = {
       selectedCategory: null,
       lbFading: false,
-      gridFading: false
+      gridFading: false,
+      isLoading: true,
+      isError: false
     }
 
     this.goBack = this.goBack.bind(this)
@@ -37,6 +23,40 @@ class App extends React.Component {
 
     this.leaderboardGrid = React.createRef();
     this.leaderboard = React.createRef();
+  }
+
+  componentDidMount() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://easyranking.chillstudio.it/get/data');
+    xhr.responseType = 'text/json';
+    xhr.send();
+    xhr.onload = () => {
+      if (xhr.status !== 200) {
+        this.setState({
+          isError: true
+        })
+      } else {
+        const data = JSON.parse(xhr.response);
+
+        data.categories.sort((a, b) => 
+          a.important ? 0 : 100 + data.categories.findIndex(c => c === a) -
+          b.important ? 0 : 100 - data.categories.findIndex(c => c === b));
+        data.categories.forEach((c, i) => c.id = i);
+        this.categories = data.categories;
+
+        this.players = new Map();
+        data.players.forEach(p => this.players[p.uuid] = p)
+
+        this.setState({
+          isLoading: false
+        })
+      }
+    };
+    xhr.onerror = () => {
+      this.setState({
+        isError: true
+      })
+    };
   }
 
   selectCategory(categoryId) {
@@ -61,19 +81,27 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="app-header">
-          <img src={logo} onClick={() => this.goBack()}></img>
+          <img src={logo} alt="EasyRanking Logo" onClick={() => this.goBack()}></img>
         </div>
         <div className="app-body">
-          {this.state.selectedCategory != null
-            ? <Leaderboard
-                fading={this.state.lbFading}
-                rankings={["TIZIO", "CAIO", "SEMPRONIO"]}
-                goBack={this.goBack}/>
-            : <LeaderboardsGrid 
-                fading={this.state.gridFading}
-                ref={this.refs.leaderboardGrid}
-                selectCategory={this.selectCategory} />
-          }
+          {this.state.isError
+            ? <div className="error-panel">Couldn't retrieve data from server.</div>
+            : this.state.isLoading
+              ? <div className="loader-container"><div className="loader"></div></div>
+              : this.state.selectedCategory != null
+                  ? <Leaderboard
+                      players={this.players}
+                      category={this.categories[this.state.selectedCategory]}
+                      fading={this.state.lbFading}
+                      rankings={["TIZIO", "CAIO", "SEMPRONIO"]}
+                      goBack={this.goBack}/>
+                  : <LeaderboardsGrid
+                      players={this.players}
+                      categories={this.categories}
+                      fading={this.state.gridFading}
+                      ref={this.refs.leaderboardGrid}
+                      selectCategory={this.selectCategory} />
+            }
         </div>
       </div>
     );

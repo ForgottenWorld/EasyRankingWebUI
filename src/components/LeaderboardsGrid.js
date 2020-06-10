@@ -12,16 +12,22 @@ class LeaderboardsGrid extends React.Component {
         return (
             <div className={`leaderboards-grid ${this.props.fading ? "fading" : ""}`}>
                 <div className="leaderboards-grid-important">
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={0}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={1}></LeaderboardsCell>
+                    <LeaderboardsCell
+                        selectCategory={this.selectCategory}
+                        category={this.props.categories[0]}
+                        players={this.props.players} />
+                    <LeaderboardsCell
+                        selectCategory={this.selectCategory}
+                        category={this.props.categories[1]}
+                        players={this.props.players} />
                 </div>
                 <div className="leaderboards-grid-default">
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={2}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={3}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={4}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={5}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={6}></LeaderboardsCell>
-                    <LeaderboardsCell selectCategory={this.selectCategory} cellId={7}></LeaderboardsCell>
+                    {this.props.categories.slice(2).map(c =>
+                        <LeaderboardsCell 
+                            selectCategory={this.selectCategory}
+                            category={c}
+                            players={this.props.players} />
+                    )}
                 </div>
             </div>
         );
