@@ -27,7 +27,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://easyranking.chillstudio.it/get/data');
+    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://easyranking.chillstudio.it/get/data');
     xhr.responseType = 'text/json';
     xhr.send();
     xhr.onload = () => {
@@ -38,9 +38,13 @@ class App extends React.Component {
       } else {
         const data = JSON.parse(xhr.response);
 
-        data.categories.sort((a, b) => 
-          a.important ? 0 : 100 + data.categories.findIndex(c => c === a) -
-          b.important ? 0 : 100 - data.categories.findIndex(c => c === b));
+        data.categories.sort((a, b) => {
+          if (a.important && !b.important) return -1
+          else if (b.important && !a.important) return 1
+          else {
+            return data.categories.findIndex(c => c === a) - data.categories.findIndex(c => c === b);
+          }
+        });
         data.categories.forEach((c, i) => c.id = i);
         this.categories = data.categories;
 
@@ -93,7 +97,6 @@ class App extends React.Component {
                       players={this.players}
                       category={this.categories[this.state.selectedCategory]}
                       fading={this.state.lbFading}
-                      rankings={["TIZIO", "CAIO", "SEMPRONIO"]}
                       goBack={this.goBack}/>
                   : <LeaderboardsGrid
                       players={this.players}
@@ -103,10 +106,10 @@ class App extends React.Component {
                       selectCategory={this.selectCategory} />
             }
         </div>
+        <div className="app-footer"></div>
       </div>
     );
   }
-  
 }
 
 export default App;

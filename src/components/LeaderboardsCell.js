@@ -22,9 +22,9 @@ class LeaderboardsCell extends React.Component {
                     {this.props.category.name}
                     <div className="leaderboards-cell-list">
                         <div className="leaderboards-top3">
-                            {this.props.category.players.slice(0, 3).map(p =>
-                                <div><span className="leaderboards-top3-player-name">{this.props.players[p.uuid].name}</span>
-                                <span className="lb-score">{p.score} {this.props.category.suffix}</span></div>
+                            {this.props.category.players.slice(0, 3).map((p, i) =>
+                                <div key={"top3-" + i}><span className="leaderboards-top3-player-name">{this.props.players[p.uuid].name}</span>
+                                <span className="lb-score">{Math.floor(p.score)} {this.props.category.suffix}</span></div>
                             )}
                         </div>
                     </div>

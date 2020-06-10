@@ -23,7 +23,8 @@ class LeaderboardsGrid extends React.Component {
                 </div>
                 <div className="leaderboards-grid-default">
                     {this.props.categories.slice(2).map(c =>
-                        <LeaderboardsCell 
+                        <LeaderboardsCell
+                            key={"lbc" + c.id} 
                             selectCategory={this.selectCategory}
                             category={c}
                             players={this.props.players} />
