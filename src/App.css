@@ -76,6 +76,10 @@
 }
 
 .app-footer {
+  height: 32px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
   font-size:0.8rem;
   text-align: right;
   color: #aaaaaa;
@@ -88,7 +92,7 @@
 }
 
 .app-footer:hover::after {
-  content: "Credits: Simone Righi for the EasyRanking plugin, Giacomo Zama for this webpage, VizSensor contributors for the VizSensor React library and Madpixel Designs for the Minecrafter font";
+  content: "Credits: Simone Righi for the EasyRanking plugin, Giacomo Zama for this webpage, VizSensor contributors for the VizSensor React library, Minotar for their avatar API, and Madpixel Designs for the Minecrafter font";
 }
 
 
@@ -394,7 +398,7 @@
 .leaderboard-list-name > .player-face {
   width: 32px;
   height: 32px;
-  margin-left: 8px;
+  margin-left: 16px;
   border-radius: 2px;
   box-shadow: 0 2px 0 0px rgba(0,0,0,0.2);
   image-rendering: pixelated;
@@ -575,6 +579,8 @@
   background: url("img/podium/podium-frame-gold.png");
   background-size: 96px 144px;
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   z-index: 10;
 }
 
@@ -591,6 +597,8 @@
   background: url("img/podium/podium-frame-silver.png");
   background-size: 64px 96px;
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   z-index: 10;
 }
 
@@ -607,7 +615,44 @@
   background: url("img/podium/podium-frame-bronze.png");
   background-size: 64px 96px;
   image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
   z-index: 10;
+}
+
+.podium-score {
+  z-index: 15;
+  position: relative;
+  background-color: rgba(0,0,0,0.6);
+  font-weight: 400;
+  color: #eeeeee;
+  margin-top: 0px;
+  font-family: Minecrafter;
+  font-size: 1.3rem;
+  padding: 4px 0 0px 0;
+  text-shadow: 0 3px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+  border-radius: 4px;
+}
+
+.first-place-score {
+  width: 112px;
+  margin-left: -8px;
+  /*color: #ff9f31;*/
+}
+
+.second-place-score {
+  font-size: 1.1rem;
+  width: 80px;
+  margin-left: -8px;
+  /*color: #a8a8a8;*/
+}
+
+.third-place-score {
+  font-size: 1.1rem;
+  width: 80px;
+  margin-left: -8px;
+  /*color: #a8795c;*/
 }
 
 @media screen and (max-width: 600px) {
@@ -639,8 +684,6 @@
   }
 
   .leaderboard-list-name > .player-face {
-    width: 24px;
-    height: 24px;
     margin-left: 0px;
   }
 
