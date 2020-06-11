@@ -91,6 +91,8 @@
   content: "Credits: Simone Righi for the EasyRanking plugin, Giacomo Zama for this webpage, VizSensor contributors for the VizSensor React library and Madpixel Designs for the Minecrafter font";
 }
 
+
+
 .leaderboards-grid {
   display: flex;
   flex: 1 1 auto;
@@ -169,6 +171,16 @@
   display: inline-flex;
   flex: 1 1 'auto';
   justify-content: center;
+  align-items: center;
+}
+
+.leaderboards-top3-player-name .player-face {
+  width: 24px;
+  height: 24px;
+  margin-left: 8px;
+  border-radius: 2px;
+  box-shadow: 0 2px 0 0px rgba(0,0,0,0.2);
+  image-rendering: pixelated;
 }
 
 .leaderboards-top3 > div {
@@ -226,6 +238,7 @@
   margin-left:10px;
   background-image: url(img/medals/bronze-medal.png)
 }
+
 
 .leaderboards-grid-important > .leaderboards-cell:first-child {
   background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%), url("img/pvp.png");
@@ -335,7 +348,7 @@
 
 
 .leaderboard-list {
-  margin-top: 32px;
+  margin-top: 8px;
   background-color: rgba(0,0,0,0.4);
   border-radius: 4px;
   box-shadow: inset 0 0px 2px 2px rgba(0,0,0,0.1);
@@ -365,22 +378,43 @@
 
 .leaderboard-list > .leaderboard-list-item {
   display: flex;
+  align-items: center;
   padding: 16px;
   font-size: 1.4rem;
 }
 
 .leaderboard-list-item > .leaderboard-list-name {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   flex: 1 1 auto;
+  font-weight: 400;
+}
+
+.leaderboard-list-name > .player-face {
+  width: 32px;
+  height: 32px;
+  margin-left: 8px;
+  border-radius: 2px;
+  box-shadow: 0 2px 0 0px rgba(0,0,0,0.2);
+  image-rendering: pixelated;
 }
 
 .leaderboard-list-item > .leaderboard-list-score {
   flex: 0 0 100px;
-  text-align: right;
+  border-radius: 2px;
+  padding: 4px 0;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  background-color: rgba(255,255,255,0.2);
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
 }
 
 .leaderboard-list-item > .leaderboard-list-position {
-  flex: 0 0 50px;
-  text-align: left;
+  flex: 0 0 40px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .back-button-container {
@@ -402,11 +436,6 @@
 
 .back-button:hover {
   background-color: rgba(255,255,255,0.2);
-  padding: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  align-self: left;
 }
 
 .back-button:hover:active {
@@ -424,6 +453,7 @@
   font-family: Minecrafter;
   font-size: 2.5rem;
   margin-top: 32px;
+  text-shadow: 0 4px 0px rgba(0,0,0,0.2);
 }
 
 .loader,
@@ -485,9 +515,141 @@
   font-size: 2rem;
 }
 
+.leaderboard-podium {
+  padding: 16px;
+  height: 160px;
+  margin-top: 32px;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 4px;
+  box-shadow: inset 0 0 4px 0 rgba(0,0,0,0.4);
+  display: flex;
+}
+
+.first-place-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 50%;
+}
+
+.second-place-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 25%;
+}
+
+.third-place-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1 1 25%;
+}
+
+.podium-player-face {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  z-index: 8;
+  image-rendering: pixelated;
+}
+
+.first-place-frame {
+  width: 96px;
+  height: 144px;
+}
+
+.first-place-frame .podium-player-face {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+}
+
+.first-place-frame::before {
+  content: "";
+  position: absolute;
+  width: 96px;
+  height: 144px;
+  background: url("img/podium/podium-frame-gold.png");
+  background-size: 96px 144px;
+  image-rendering: pixelated;
+  z-index: 10;
+}
+
+.second-place-frame {
+  width: 64px;
+  height: 96px;
+}
+
+.second-place-frame::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 96px;
+  background: url("img/podium/podium-frame-silver.png");
+  background-size: 64px 96px;
+  image-rendering: pixelated;
+  z-index: 10;
+}
+
+.third-place-frame {
+  width: 64px;
+  height: 96px;
+}
+
+.third-place-frame::before {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 96px;
+  background: url("img/podium/podium-frame-bronze.png");
+  background-size: 64px 96px;
+  image-rendering: pixelated;
+  z-index: 10;
+}
+
 @media screen and (max-width: 600px) {
   .app-body {
     align-items: flex-start;
+  }
+
+  .leaderboard-list-item {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .leaderboard-list-item > .leaderboard-list-position {
+    flex: 0 0 30px;
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .leaderboard-list-item > .leaderboard-list-score {
+    flex: 1 0 70px;
+    margin-top: 8px;
+    font-size: 1rem;
+  }
+
+  .leaderboard-list-item > .leaderboard-list-name {
+    flex: 1 1 calc( 100% - 70px );
+    font-size: 1rem;
+    justify-content: space-between;
+  }
+
+  .leaderboard-list-name > .player-face {
+    width: 24px;
+    height: 24px;
+    margin-left: 0px;
+  }
+
+  .leaderboards-grid-important {
+    flex-direction: column;
+  }
+
+  .leaderboards-grid-default {
+    flex-direction: column;
   }
 
   .leaderboards-cell {
@@ -502,11 +664,26 @@
     width: 80px;
   }
 
-  .leaderboards-top3 > div:nth-child(1) {
-    font-size: 1.1rem;
+  .lb-score {
+    margin-top: 8px;
+    flex: 1 1 auto;
   }
 
-  .leaderboard-list > .leaderboard-list-item {
+  .leaderboards-top3-player-name {
+    flex: 1 1 calc(100% - 64px);
+    justify-content: space-between;
+    margin-left: 12px;
+  }
+
+  .leaderboards-top3 > div {
+    flex-wrap: wrap;
+  }
+
+  .leaderboards-top3 > div {
+    flex-wrap: wrap;
+  }
+
+  .leaderboards-top3 > div:nth-child(1) {
     font-size: 1rem;
   }
 }

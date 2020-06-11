@@ -1,7 +1,8 @@
 import React from 'react';
 import LeaderboardsCell from './LeaderboardsCell'
 
-class LeaderboardsGrid extends React.Component {
+export default class LeaderboardsGrid extends React.Component {
+    
     constructor(props) {
         super(props);
 
@@ -34,5 +35,3 @@ class LeaderboardsGrid extends React.Component {
         );
     }
 }
-
-export default LeaderboardsGrid;

@@ -4,7 +4,6 @@ import LeaderboardsGrid from './components/LeaderboardsGrid';
 import logo from './img/logo.png';
 import Leaderboard from './components/Leaderboard';
 
-
 class App extends React.Component {
 
   constructor(props) {
@@ -85,7 +84,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="app-header">
-          <img src={logo} alt="EasyRanking Logo" onClick={() => this.goBack()}></img>
+          <img src={logo} alt="EasyRanking Logo" className="logo" onClick={() => this.goBack()}></img>
         </div>
         <div className="app-body">
           {this.state.isError
