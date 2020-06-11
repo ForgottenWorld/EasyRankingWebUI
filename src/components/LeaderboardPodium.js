@@ -10,8 +10,10 @@ export default class LeaderboardPodium extends React.Component {
                         <img alt="Second Place" className="podium-player-face" src={`https://minotar.net/avatar/${this.props.second?.uuid ?? 0}/64`} />
                         <div className="podium-score second-place-score">{this.props.second?.score ?? 0}</div>
                     </div>
+                    <div className="podium-name second-place-name">{this.props.secondName ?? "NOBODY"}</div>
                 </div>
                 <div className="first-place-container">
+                    <div className="podium-name first-place-name">{this.props.firstName ?? "NOBODY"}</div>
                     <div className="first-place-frame">
                         <img alt="First Place" className="podium-player-face" src={`https://minotar.net/avatar/${this.props.first?.uuid ?? 0}/96`} />
                         <div className="podium-score first-place-score">{this.props.first?.score ?? 0}</div>
@@ -22,6 +24,7 @@ export default class LeaderboardPodium extends React.Component {
                         <img alt="Third Place" className="podium-player-face" src={`https://minotar.net/avatar/${this.props.third?.uuid ?? 0}/64`} />
                         <div className="podium-score third-place-score">{this.props.third?.score ?? 0}</div>
                     </div>
+                    <div className="podium-name third-place-name">{this.props.thirdName ?? "NOBODY"}</div>
                 </div>
             </div>
         );

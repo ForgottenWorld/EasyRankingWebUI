@@ -284,8 +284,6 @@
   background-position: center; 
 }
 
-
-
 .leaderboard.color1 {
   background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%);
   background-position: center; 
@@ -350,7 +348,6 @@
   background-color: rgba(255,255,255,0.1);
 }
 
-
 .leaderboard-list {
   margin-top: 8px;
   background-color: rgba(0,0,0,0.4);
@@ -405,7 +402,7 @@
 }
 
 .leaderboard-list-item > .leaderboard-list-score {
-  flex: 0 0 100px;
+  flex: 0 0 130px;
   border-radius: 2px;
   padding: 4px 0;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
@@ -521,7 +518,7 @@
 
 .leaderboard-podium {
   padding: 16px;
-  height: 160px;
+  height: 220px;
   margin-top: 32px;
   background-color: rgba(0,0,0,0.4);
   border-radius: 4px;
@@ -558,6 +555,34 @@
   border-radius: 16px;
   z-index: 8;
   image-rendering: pixelated;
+}
+
+.podium-name {
+  display: flex;
+  align-items: center;
+  font-family: Minecrafter;
+  padding: 8px;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  text-shadow: 0 3px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+.first-place-name {
+  margin-bottom: 12px;
+  font-size: 1.6rem;
+  color: #ffaf41;
+}
+
+.second-place-name {
+  margin-top: 8px;
+  color: #a8a8a8;
+}
+
+.third-place-name {
+  margin-top: 8px;
+  color: #a8795c;
 }
 
 .first-place-frame {
@@ -629,35 +654,43 @@
   margin-top: 0px;
   font-family: Minecrafter;
   font-size: 1.3rem;
-  padding: 4px 0 0px 0;
+  padding: 4px 0;
   text-shadow: 0 3px 0 rgba(0,0,0,0.2);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
   border-radius: 4px;
 }
 
 .first-place-score {
-  width: 112px;
-  margin-left: -8px;
+  width: 128px;
+  margin-left: -16px;
   /*color: #ff9f31;*/
 }
 
 .second-place-score {
   font-size: 1.1rem;
-  width: 80px;
-  margin-left: -8px;
+  width: 96px;
+  margin-left: -16px;
   /*color: #a8a8a8;*/
 }
 
 .third-place-score {
   font-size: 1.1rem;
-  width: 80px;
-  margin-left: -8px;
+  width: 96px;
+  margin-left: -16px;
   /*color: #a8795c;*/
 }
 
 @media screen and (max-width: 600px) {
   .app-body {
     align-items: flex-start;
+  }
+
+  .podium-name {
+    display: none;
+  }
+
+  .podium-score {
+    font-size: 0.9rem;
   }
 
   .leaderboard-list-item {
@@ -672,7 +705,7 @@
   }
 
   .leaderboard-list-item > .leaderboard-list-score {
-    flex: 1 0 70px;
+    flex: 1 0 80px;
     margin-top: 8px;
     font-size: 1rem;
   }
@@ -710,6 +743,10 @@
   .lb-score {
     margin-top: 8px;
     flex: 1 1 auto;
+  }
+
+  .leaderboard-podium {
+    height: 180px;
   }
 
   .leaderboards-top3-player-name {

@@ -18,8 +18,11 @@ export default class Leaderboard extends React.Component {
                     <LeaderboardPodium
                         suffix={this.props.category.suffix}
                         first={this.props.category.players[0]}
+                        firstName={this.props.players?.[this.props.category.players?.[0]?.uuid]?.name ?? null}
                         second={this.props.category.players[1]}
-                        third={this.props.category.players[2]} />
+                        secondName={this.props.players?.[this.props.category.players?.[1]?.uuid]?.name ?? null}
+                        third={this.props.category.players[2]}
+                        thirdName={this.props.players[this.props.category.players?.[2]?.uuid]?.name ?? null} />
                 </div>
                 <div className="leaderboard-list">
                     {this.props.category.players.map((p,i) => 
