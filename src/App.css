@@ -192,6 +192,7 @@
 
 .leaderboards-top3 > div::before {
   content: "";
+  display: flex;
 }
 
 .leaderboards-top3 > div:first-child {
@@ -218,34 +219,25 @@
 }
 
 .leaderboards-top3 > div:nth-child(1)::before {
-  width: 40px;
   height: 40px;
+  flex: 0 0 40px;
   margin-left: 0px;
   margin-right: -10px;
   background-image: url(img/medals/gold-medal.png);
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
 }
 
 .leaderboards-top3 > div:nth-child(2)::before {
-  width: 20px;
+  flex: 0 0 20px;
   height: 20px;
   margin-left:10px;
   background-image: url(img/medals/silver-medal.png);
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
 }
 
 .leaderboards-top3 > div:nth-child(3)::before {
-  width: 20px;
+  flex: 0 0 20px;
   height: 20px;
   margin-left:10px;
   background-image: url(img/medals/bronze-medal.png);
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
 }
 
 
@@ -722,6 +714,7 @@
   max-width: 800px;
   transition: opacity linear 200ms;
   animation: fadeIn 200ms;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4);
   background: linear-gradient(45deg, rgba(40,40,40,0.9) 0%, rgba(50,50,50,0.9) 35%, rgba(60,60,60,0.9) 100%), url("img/bgpattern.png");
 }
 
