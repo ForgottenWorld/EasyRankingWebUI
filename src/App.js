@@ -3,6 +3,7 @@ import './App.css';
 import LeaderboardsGrid from './components/LeaderboardsGrid';
 import logo from './img/logo.png';
 import Leaderboard from './components/Leaderboard';
+import PlayerStats from './components/PlayerStats';
 
 class App extends React.Component {
 
@@ -11,14 +12,20 @@ class App extends React.Component {
 
     this.state = {
       selectedCategory: null,
+      selectedPlayer: null,
+
+      psFading: false,
       lbFading: false,
       gridFading: false,
+
       isLoading: true,
       isError: false
     }
 
-    this.goBack = this.goBack.bind(this)
-    this.selectCategory = this.selectCategory.bind(this)
+    this.goBackFromPs = this.goBackFromPs.bind(this);
+    this.goBackFromLb = this.goBackFromLb.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
+    this.selectPlayer = this.selectPlayer.bind(this);
 
     this.leaderboardGrid = React.createRef();
     this.leaderboard = React.createRef();
@@ -62,6 +69,14 @@ class App extends React.Component {
     };
   }
 
+  selectPlayer(uuid) {
+    this.setState({lbFading: true});
+    setTimeout(() => {
+      this.setState({lbFading: false})
+      this.setState({selectedPlayer: uuid});
+    }, 200)
+  }
+
   selectCategory(categoryId) {
     this.setState({gridFading: true});
     setTimeout(() => {
@@ -70,13 +85,23 @@ class App extends React.Component {
     }, 200)
   }
 
-  goBack() {
+  goBackFromPs() {
+    if (this.state.selectedPlayer == null) return;
+
+    this.setState({psFading: true});
+    setTimeout(() => {
+      this.setState({psFading: false})
+      this.setState({selectedPlayer: null});
+    }, 200)
+  }
+
+  goBackFromLb() {
     if (this.state.selectedCategory == null) return;
 
-    this.setState({lbFading: true});
+    this.setState({lbFading: true, psFading: true});
     setTimeout(() => {
-      this.setState({lbFading: false})
-      this.setState({selectedCategory: null});
+      this.setState({lbFading: false, psFading: false})
+      this.setState({selectedCategory: null, selectedPlayer: null});
     }, 200)
   }
 
@@ -84,25 +109,41 @@ class App extends React.Component {
     return (
       <div className="app">
         <div className="app-header">
-          <img src={logo} alt="EasyRanking Logo" className="logo" onClick={() => this.goBack()}></img>
+          <img src={logo} alt="EasyRanking Logo" className="logo" onClick={() => this.goBackFromLb()}></img>
         </div>
         <div className="app-body">
           {this.state.isError
             ? <div className="error-panel">Couldn't retrieve data from server.</div>
             : this.state.isLoading
               ? <div className="loader-container"><div className="loader"></div></div>
-              : this.state.selectedCategory != null
-                  ? <Leaderboard
-                      players={this.players}
-                      category={this.categories[this.state.selectedCategory]}
-                      fading={this.state.lbFading}
-                      goBack={this.goBack}/>
-                  : <LeaderboardsGrid
-                      players={this.players}
-                      categories={this.categories}
-                      fading={this.state.gridFading}
-                      ref={this.refs.leaderboardGrid}
-                      selectCategory={this.selectCategory} />
+              : this.state.selectedPlayer != null
+                ? <PlayerStats
+                    name={this.players[this.state.selectedPlayer].name}
+                    uuid={this.state.selectedPlayer}
+                    fading={this.state.psFading}
+                    scores={this.categories.filter(c => 
+                      c.players.map(p => p.uuid).includes(this.state.selectedPlayer)).map(c => {
+                        return {
+                          category: c.name, 
+                          score: c.players.find(p => p.uuid === this.state.selectedPlayer).score,
+                          suffix: c.suffix
+                        }
+                      })}
+                    goBack={this.goBackFromPs}
+                    />
+                : this.state.selectedCategory != null
+                    ? <Leaderboard
+                        players={this.players}
+                        category={this.categories[this.state.selectedCategory]}
+                        fading={this.state.lbFading}
+                        selectPlayer={this.selectPlayer}
+                        goBack={this.goBackFromLb} />
+                    : <LeaderboardsGrid
+                        players={this.players}
+                        categories={this.categories}
+                        fading={this.state.gridFading}
+                        ref={this.refs.leaderboardGrid}
+                        selectCategory={this.selectCategory} />
             }
         </div>
         <div className="app-footer"></div>

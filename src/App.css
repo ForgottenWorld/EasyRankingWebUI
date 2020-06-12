@@ -45,7 +45,7 @@
 .app {
   display: flex;
   flex-direction: column;
-  background-color: #222222;
+  background: linear-gradient(0, rgba(20,20,20,0.9) 0%, rgba(40,40,40,0.9) 60%), url(img/bgpattern.png);
   text-align: center;
   font-family: Montserrat, sans-serif;
   font-weight: 300;
@@ -70,9 +70,7 @@
   flex: 1 1 auto;
   justify-content: center;
   align-items: center;
-  padding-top:8px;
-  padding-bottom: 64px;
-  background-color: #222222;
+  padding-bottom: 45px;
 }
 
 .app-footer {
@@ -95,14 +93,12 @@
   content: "Credits: Simone Righi for the EasyRanking plugin, Giacomo Zama for this webpage, VizSensor contributors for the VizSensor React library, Minotar for their avatar API, and Madpixel Designs for the Minecrafter font";
 }
 
-
-
 .leaderboards-grid {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
   transition: opacity linear 200ms;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 .fading {
@@ -226,105 +222,118 @@
   height: 40px;
   margin-left: 0px;
   margin-right: -10px;
-  background-image: url(img/medals/gold-medal.png)
+  background-image: url(img/medals/gold-medal.png);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .leaderboards-top3 > div:nth-child(2)::before {
   width: 20px;
   height: 20px;
   margin-left:10px;
-  background-image: url(img/medals/silver-medal.png)
+  background-image: url(img/medals/silver-medal.png);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 .leaderboards-top3 > div:nth-child(3)::before {
   width: 20px;
   height: 20px;
   margin-left:10px;
-  background-image: url(img/medals/bronze-medal.png)
+  background-image: url(img/medals/bronze-medal.png);
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
 }
 
 
 .leaderboards-grid-important > .leaderboards-cell:first-child {
-  background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-important > .leaderboards-cell:last-child {
-  background: linear-gradient(45deg, var(--var-color-2-darker) 0%, var(--var-color-2) 35%, var(--var-color-2-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-2-darker) 0%, var(--var-color-2) 35%, var(--var-color-2-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 1) {
-  background: linear-gradient(45deg, var(--var-color-3-darker) 0%, var(--var-color-3) 35%, var(--var-color-3-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-3-darker) 0%, var(--var-color-3) 35%, var(--var-color-3-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 2) {
-  background: linear-gradient(45deg, var(--var-color-4-darker) 0%, var(--var-color-4) 35%, var(--var-color-4-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-4-darker) 0%, var(--var-color-4) 35%, var(--var-color-4-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 3) {
-  background: linear-gradient(45deg, var(--var-color-5-darker) 0%, var(--var-color-5) 35%, var(--var-color-5-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-5-darker) 0%, var(--var-color-5) 35%, var(--var-color-5-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 4) {
-  background: linear-gradient(45deg, var(--var-color-6-darker) 0%, var(--var-color-6) 35%, var(--var-color-6-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-6-darker) 0%, var(--var-color-6) 35%, var(--var-color-6-brighter) 100%), url("img/bgpattern.png");
   background-position: center; ;
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 5) {
-  background: linear-gradient(45deg, var(--var-color-7-darker) 0%, var(--var-color-7) 35%, var(--var-color-7-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-7-darker) 0%, var(--var-color-7) 35%, var(--var-color-7-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboards-grid-default > .leaderboards-cell:nth-child(n + 6) {
-  background: linear-gradient(45deg, var(--var-color-8-darker) 0%, var(--var-color-8) 35%, var(--var-color-8-brighter) 100%), url("img/pvp.png");
+  background: linear-gradient(45deg, var(--var-color-8-darker) 0%, var(--var-color-8) 35%, var(--var-color-8-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
+.leaderboard {
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4);
+}
+
 .leaderboard.color1 {
-  background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-1-darker) 0%, var(--var-color-1) 35%, var(--var-color-1-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color2 {
-  background: linear-gradient(45deg, var(--var-color-2-darker) 0%, var(--var-color-2) 35%, var(--var-color-2-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-2-darker) 0%, var(--var-color-2) 35%, var(--var-color-2-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color3 {
-  background: linear-gradient(45deg, var(--var-color-3-darker) 0%, var(--var-color-3) 35%, var(--var-color-3-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-3-darker) 0%, var(--var-color-3) 35%, var(--var-color-3-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color4 {
-  background: linear-gradient(45deg, var(--var-color-4-darker) 0%, var(--var-color-4) 35%, var(--var-color-4-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-4-darker) 0%, var(--var-color-4) 35%, var(--var-color-4-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color5 {
-  background: linear-gradient(45deg, var(--var-color-5-darker) 0%, var(--var-color-5) 35%, var(--var-color-5-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-5-darker) 0%, var(--var-color-5) 35%, var(--var-color-5-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color6 {
-  background: linear-gradient(45deg, var(--var-color-6-darker) 0%, var(--var-color-6) 35%, var(--var-color-6-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-6-darker) 0%, var(--var-color-6) 35%, var(--var-color-6-brighter) 100%), url("img/bgpattern.png");
   background-position: center; ;
 }
 
 .leaderboard.color7 {
-  background: linear-gradient(45deg, var(--var-color-7-darker) 0%, var(--var-color-7) 35%, var(--var-color-7-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-7-darker) 0%, var(--var-color-7) 35%, var(--var-color-7-brighter) 100%), url("img/bgpattern.png");
   background-position: center; 
 }
 
 .leaderboard.color8 {
-  background: linear-gradient(45deg, var(--var-color-8-darker) 0%, var(--var-color-8) 35%, var(--var-color-8-brighter) 100%);
+  background: linear-gradient(45deg, var(--var-color-8-darker) 0%, var(--var-color-8) 35%, var(--var-color-8-brighter) 100%, url("img/bgpattern.png"));
 }
 
 .lb-score {
-  width: 100px;
+  width: 150px;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   font-size: 1rem;
   font-weight: 400;
@@ -349,7 +358,7 @@
 }
 
 .leaderboard-list {
-  margin-top: 8px;
+  margin-top: 16px;
   background-color: rgba(0,0,0,0.4);
   border-radius: 4px;
   box-shadow: inset 0 0px 2px 2px rgba(0,0,0,0.1);
@@ -365,6 +374,10 @@
 
 .leaderboard-list > div:nth-child(2n) {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-list > div:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .leaderboard-list > div:first-child {  
@@ -524,13 +537,14 @@
   border-radius: 4px;
   box-shadow: inset 0 0 4px 0 rgba(0,0,0,0.4);
   display: flex;
+  justify-content: space-around;
 }
 
 .first-place-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1 1 50%;
+  flex: 1 1 auto;
 }
 
 .second-place-container {
@@ -538,7 +552,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  flex: 1 1 25%;
+  flex: 2 1 auto;
 }
 
 .third-place-container {
@@ -546,7 +560,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  flex: 1 1 25%;
+  flex: 2 1 auto;
 }
 
 .podium-player-face {
@@ -554,6 +568,7 @@
   height: 64px;
   border-radius: 16px;
   z-index: 8;
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,0.4);
   image-rendering: pixelated;
 }
 
@@ -576,12 +591,12 @@
 }
 
 .second-place-name {
-  margin-top: 8px;
+  margin-top: 12px;
   color: #a8a8a8;
 }
 
 .third-place-name {
-  margin-top: 8px;
+  margin-top: 12px;
   color: #a8795c;
 }
 
@@ -648,53 +663,149 @@
 .podium-score {
   z-index: 15;
   position: relative;
-  background-color: rgba(0,0,0,0.6);
-  font-weight: 400;
-  color: #eeeeee;
-  margin-top: 0px;
+  /* -webkit-text-stroke: 2px white; */
+  /* text-shadow: 0px 2px 4px rgba(0,0,0,1); */
+  /* box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4); */
+}
+
+.podium-score::before {
+  position: absolute;
   font-family: Minecrafter;
-  font-size: 1.3rem;
-  padding: 4px 0;
-  text-shadow: 0 3px 0 rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  left: 18px;
+  width: 30px;
+  border-radius: 20px;
+  text-align: center;
+  height: 30px;
+  box-sizing: border-box;
+  background-color: rgba(255,255,255,0.95);
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.4);
+  /* border: 3px solid #ffaf41; */
+}
+
+.first-place-score::before {
+  content: "1";
+  color: #ffaf41;
+  font-size: 2.2rem; 
+  padding-right: 1px;
+  padding-top: 4px;
+  left: 28px;
+  width: 40px;
+  height: 40px;
+  /* border: 2px solid #ffaf41; */
+}
+
+.second-place-score::before {
+  content: "2";
+ /*  border: 2px solid #a8a8a8; */
+  color: #a8a8a8;
+}
+
+.third-place-score::before {
+  content: "3";
+  /* border: 2px solid #a8795c; */
+  color: #a8795c;
+}
+
+.playerstats {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
   border-radius: 4px;
+  width: 85vw;
+  margin-top: 32px;
+  max-width: 800px;
+  transition: opacity linear 200ms;
+  animation: fadeIn 200ms;
+  background: linear-gradient(45deg, rgba(40,40,40,0.9) 0%, rgba(50,50,50,0.9) 35%, rgba(60,60,60,0.9) 100%), url("img/bgpattern.png");
 }
 
-.first-place-score {
-  width: 128px;
-  margin-left: -16px;
-  /*color: #ff9f31;*/
+.playerstats-header {
+  display: flex;
+  flex-direction: column;
 }
 
-.second-place-score {
-  font-size: 1.1rem;
-  width: 96px;
-  margin-left: -16px;
-  /*color: #a8a8a8;*/
+.playerstats-title {
+  font-family: Minecrafter;
+  font-size: 2.5rem;
+  margin-top: 32px;
+  text-shadow: 0 4px 0px rgba(0,0,0,0.2);
 }
 
-.third-place-score {
-  font-size: 1.1rem;
-  width: 96px;
-  margin-left: -16px;
-  /*color: #a8795c;*/
+.playerstats-top-panel {
+  display: flex;
+  margin-top: 32px;
+}
+
+.playerstats-list {
+  display: flex;
+  flex-direction: column;
+  flex: 4 1 auto;
+  background-color: rgba(0,0,0,0.4);
+  border-radius: 4px;
+  box-shadow: inset 0 0px 2px 2px rgba(0,0,0,0.1);
+}
+
+.playerstats-list-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    font-size: 1.4rem;
+}
+
+.playerstats-list-item:nth-child(2n + 1) {
+  background-color: rgba(255,255,255,0.02);
+}
+
+.playerstats-list-item:nth-child(2n) {
+  background-color: rgba(255,255,255,0.06);
+}
+
+.playerstats-list-name {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1 1 auto;
+    font-weight: 600;
+}
+
+.playerstats-skin-container {
+  display: flex;
+  flex: 1 1 auto;
+  margin-right: 16px;
+  justify-content: center;
+  background-color: rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.4);
+  padding: 16px;
+  border-radius: 4px;
 }
 
 @media screen and (max-width: 600px) {
   .app-body {
+    padding: 16px;
+    padding-bottom: 48px;
     align-items: flex-start;
+    box-sizing: border-box;
   }
 
   .podium-name {
     display: none;
   }
 
-  .podium-score {
-    font-size: 0.9rem;
+  .podium-score::before {
+    padding-top: 6px;
+  }
+
+  .first-place-score::before {
+    padding-top: 8px;
   }
 
   .leaderboard-list-item {
-    font-size: 0.9rem;
+    font-size: 1rem;
     flex-wrap: wrap;
   }
 
@@ -729,11 +840,14 @@
   }
 
   .leaderboards-cell {
+    margin: 0px;
+    margin-bottom: 16px;
     font-size: 1.5rem;
   }
 
   .leaderboard {
-    margin-top: 0;
+    margin: 0px;
+    width: 100vw;
   }
 
   .lb-score {
@@ -764,6 +878,19 @@
   }
 
   .leaderboards-top3 > div:nth-child(1) {
+    font-size: 1rem;
+  }
+
+  .playerstats-top-panel {
+    flex-direction: column;
+  }
+
+  .playerstats-skin-container {
+    margin-right: 0;
+    margin-bottom: 16px;
+  }
+
+  .playerstats-list-item {
     font-size: 1rem;
   }
 }

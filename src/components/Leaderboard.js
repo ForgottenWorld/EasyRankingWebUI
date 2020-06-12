@@ -26,7 +26,7 @@ export default class Leaderboard extends React.Component {
                 </div>
                 <div className="leaderboard-list">
                     {this.props.category.players.map((p,i) => 
-                        <div className="leaderboard-list-item">
+                        <div key={`lb-${i}`} className="leaderboard-list-item" onClick={() => this.props.selectPlayer(p.uuid)}>
                             <span className="leaderboard-list-position">{i+1}</span>
                             <span className="leaderboard-list-name">
                                 {this.props.players[p.uuid].name}
