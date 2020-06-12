@@ -1,5 +1,7 @@
 import React from 'react';
 import LeaderboardPodium from './LeaderboardPodium';
+import { separateThousands } from "../utils/Formatting";
+
 
 export default class Leaderboard extends React.Component {
 
@@ -32,7 +34,7 @@ export default class Leaderboard extends React.Component {
                                 {this.props.players[p.uuid].name}
                                 <img alt="Player face" className="player-face" src={`https://minotar.net/avatar/${p.uuid}/32`} />
                             </span>
-                            <span className="leaderboard-list-score">{Math.floor(p.score)} {this.props.category.suffix}</span>
+                            <span className="leaderboard-list-score">{separateThousands(Math.floor(p.score))} {this.props.category.suffix}</span>
                         </div>    
                     )}
                 </div>

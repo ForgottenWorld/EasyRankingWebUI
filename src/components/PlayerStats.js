@@ -1,4 +1,5 @@
 import React from 'react';
+import { separateThousands } from "../utils/Formatting";
 
 export default class PlayerStats extends React.Component {
 
@@ -25,7 +26,7 @@ export default class PlayerStats extends React.Component {
                             <span className="playerstats-list-name">
                                 {s.category}
                             </span>
-                            <span className="playerstats-list-score">{Math.floor(s.score)} {s.suffix}</span>
+                            <span className="playerstats-list-score">{separateThousands(Math.floor(s.score))} {s.suffix}</span>
                         </div>    
                     )}
                     </div>

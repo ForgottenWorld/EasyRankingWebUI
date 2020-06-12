@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactVisibilitySensor from 'react-visibility-sensor';
+import { separateThousands } from "../utils/Formatting";
 
 export default class LeaderboardsCell extends React.Component {
 
@@ -29,7 +30,7 @@ export default class LeaderboardsCell extends React.Component {
                                         <img alt="Player face" className="player-face" src={`https://minotar.net/avatar/${p.uuid}/24`} />
                                     </span>
                                     <span className="lb-score">
-                                        {Math.floor(p.score)} {this.props.category.suffix}
+                                        {separateThousands(Math.floor(p.score))} {this.props.category.suffix}
                                     </span>
                                 </div>
                             )}

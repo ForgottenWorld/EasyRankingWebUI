@@ -416,7 +416,7 @@
 }
 
 .leaderboard-list-item > .leaderboard-list-score {
-  flex: 0 0 130px;
+  flex: 0 0 200px;
   border-radius: 2px;
   padding: 4px 0;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
@@ -824,7 +824,7 @@
   }
 
   .leaderboard-list-item > .leaderboard-list-score {
-    flex: 1 0 80px;
+    flex: 1 0 100px;
     margin-top: 8px;
     font-size: 1rem;
   }
