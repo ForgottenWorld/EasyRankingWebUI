@@ -3,6 +3,6 @@ Web interface for EasyRanking leaderboards
 
 ## HOW TO BUILD
   
-   npm install
-   npm run build
+    npm install
+    npm run build
    
