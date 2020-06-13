@@ -6,7 +6,7 @@
 ## REQUIREMENTS
  1. Having the <a href="https://github.com/ForgottenWorld/EasyRanking">EasyRanking plugin</a> installed on your Spigot server
  2. Having the <a href="https://github.com/ForgottenWorld/EasyRankingWebApi">back-end API</a> ready on your webserver
- 3. Having set the correct URL to the backed API on your webserver in App.js
+ 3. Having set the correct URL to the backed API on your webserver in src/App.js
  
 ## HOW TO BUILD
   
