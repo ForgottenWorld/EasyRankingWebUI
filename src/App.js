@@ -33,7 +33,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://cors-anywhere.herokuapp.com/https://easyranking.chillstudio.it/get/data');
+    xhr.open('GET', 'https://easyranking.chillstudio.it/get/data');
     xhr.responseType = 'text/json';
     xhr.send();
     xhr.onload = () => {
