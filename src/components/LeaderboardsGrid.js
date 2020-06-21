@@ -10,6 +10,8 @@ export default class LeaderboardsGrid extends React.Component {
     }
 
     render() {
+        const needsAlignment = (this.props.categories.length !== 3 && ((this.props.categories.length - 2) % 3 === 1));
+
         return (
             <div className={`leaderboards-grid ${this.props.fading ? "fading" : ""}`}>
                 <div className="leaderboards-grid-important">
@@ -22,7 +24,7 @@ export default class LeaderboardsGrid extends React.Component {
                         category={this.props.categories[1]}
                         players={this.props.players} />
                 </div>
-                <div className="leaderboards-grid-default">
+                <div className={`leaderboards-grid-default ${needsAlignment ? "realigned" : null}`}>
                     {this.props.categories.slice(2).map(c =>
                         <LeaderboardsCell
                             key={"lbc" + c.id} 

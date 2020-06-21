@@ -98,7 +98,7 @@
   flex: 1 1 auto;
   flex-direction: column;
   transition: opacity linear 200ms;
-  max-width: 1200px;
+  max-width: 1600px;
 }
 
 .fading {
@@ -119,7 +119,11 @@
 
 .leaderboards-grid-default > .leaderboards-cell {
   display: flex;
-  flex: 1 1 0%;
+  flex: 1 0 31%;
+}
+
+.leaderboards-grid-default.realigned > .leaderboards-cell {
+  flex: 1 0 45%;
 }
 
 .leaderboards-grid-important > .leaderboards-cell {
@@ -785,7 +789,7 @@
   flex: 0 0 100px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .app-body {
     padding: 16px;
     padding-bottom: 48px;
