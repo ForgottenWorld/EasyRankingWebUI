@@ -10,7 +10,7 @@ export default class LeaderboardsGrid extends React.Component {
     }
 
     render() {
-        const needsAlignment = (this.props.categories.length !== 3 && ((this.props.categories.length - 2) % 3 === 1));
+        const needsAlignment = this.props.categories.length === 6;
 
         return (
             <div className={`leaderboards-grid ${this.props.fading ? "fading" : ""}`}>
