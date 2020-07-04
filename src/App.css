@@ -795,6 +795,7 @@
     padding-bottom: 48px;
     align-items: flex-start;
     box-sizing: border-box;
+    flex: 1 0 100vh;
   }
 
   .podium-name {
