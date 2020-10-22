@@ -1,43 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactVisibilitySensor from 'react-visibility-sensor';
 import { separateThousands } from "../utils/Formatting";
 
-export default class LeaderboardsCell extends React.Component {
+export default function LeaderboardsCell(props) {
+    const [translucent, setTranslucent] = useState(false);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            translucent: false
-        }
-
-        this.selectCategory = this.props.selectCategory.bind(this);
-    }
-
-    render() {
-        return (
-            <ReactVisibilitySensor onChange={(isVisible) => this.setState({translucent: isVisible})}>
-                <div 
-                    onClick={() => this.selectCategory(this.props.category.id)}
-                    className={`leaderboards-cell ${this.state.translucent ? "" : "translucent"}`}>
-                    {this.props.category.name}
-                    <div className="leaderboards-cell-list">
-                        <div className="leaderboards-top3">
-                            {this.props.category.players.slice(0, 3).map((p, i) =>
-                                <div key={"top3-" + i}>
-                                    <span className="leaderboards-top3-player-name">
-                                        {this.props.players[p.uuid].name}
-                                        <img alt="Player face" className="player-face" src={`https://minotar.net/avatar/${p.uuid}/24`} />
-                                    </span>
-                                    <span className="lb-score">
-                                        {separateThousands(Math.floor(p.score))} {this.props.category.suffix}
-                                    </span>
-                                </div>
-                            )}
-                        </div>
+    return (
+        <ReactVisibilitySensor onChange={isVisible => setTranslucent(isVisible)}>
+            <div 
+                onClick={() => props.selectCategory(props.category.id)}
+                className={`leaderboards-cell ${translucent ? "" : "translucent"}`}>
+                {props.category.name}
+                <div className="leaderboards-cell-list">
+                    <div className="leaderboards-top3">
+                        {props.category.players.slice(0, 3).map((p, i) =>
+                            <div key={"top3-" + i}>
+                                <span className="leaderboards-top3-player-name">
+                                    {props.players[p.uuid].name}
+                                    <img alt="Player face" className="player-face" src={`https://minotar.net/avatar/${p.uuid}/24`} />
+                                </span>
+                                <span className="lb-score">
+                                    {separateThousands(Math.floor(p.score))} {props.category.suffix}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
-            </ReactVisibilitySensor>
-        )
-    }
+            </div>
+        </ReactVisibilitySensor>
+    );
 }

@@ -1,155 +1,134 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import LeaderboardsGrid from './components/LeaderboardsGrid';
-import logo from './img/logo.png';
+import logo from './img/logo.svg';
 import Leaderboard from './components/Leaderboard';
 import PlayerStats from './components/PlayerStats';
 
-class App extends React.Component {
+function App() {
 
-  constructor(props) {
-    super(props);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [psFading, setPsFading] = useState(false);
+  const [lbFading, setLbFading] = useState(false);
+  const [gridFading, setGridFading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
-    this.state = {
-      selectedCategory: null,
-      selectedPlayer: null,
+  let categories = useRef(null);
+  let players = useRef(null);
 
-      psFading: false,
-      lbFading: false,
-      gridFading: false,
+  useEffect(() => {
+    fetch('https://easyranking.chillstudio.it/get/data')
+      .then(resp => {
 
-      isLoading: true,
-      isError: false
-    }
+        if (resp.status !== 200) {
+          setIsError(true);
+          return;
+        }  
+  
+        resp.json()
+          .then(data => {
+            data.categories.sort((a, b) => {
+              if (a.important && !b.important) return -1
+              if (b.important && !a.important) return 1
+              return data.categories.findIndex(c => c === a) - data.categories.findIndex(c => c === b);
+            });
+            
+            data.categories.forEach((c, i) => c.id = i);
+            categories.current = data.categories;
+      
+            players.current = new Map();
+            data.players.forEach(p => players.current[p.uuid] = p);
+            setIsLoading(false);
+          },
+          () => setIsError(true));
+      },
+      () => setIsError(true));
+  }, []);
 
-    this.goBackFromPs = this.goBackFromPs.bind(this);
-    this.goBackFromLb = this.goBackFromLb.bind(this);
-    this.selectCategory = this.selectCategory.bind(this);
-    this.selectPlayer = this.selectPlayer.bind(this);
-
-    this.leaderboardGrid = React.createRef();
-    this.leaderboard = React.createRef();
-  }
-
-  componentDidMount() {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://easyranking.chillstudio.it/get/data');
-    xhr.responseType = 'text/json';
-    xhr.send();
-    xhr.onload = () => {
-      if (xhr.status !== 200) {
-        this.setState({
-          isError: true
-        })
-      } else {
-        const data = JSON.parse(xhr.response);
-
-        data.categories.sort((a, b) => {
-          if (a.important && !b.important) return -1
-          else if (b.important && !a.important) return 1
-          else {
-            return data.categories.findIndex(c => c === a) - data.categories.findIndex(c => c === b);
-          }
-        });
-        data.categories.forEach((c, i) => c.id = i);
-        this.categories = data.categories;
-
-        this.players = new Map();
-        data.players.forEach(p => this.players[p.uuid] = p)
-
-        this.setState({
-          isLoading: false
-        })
-      }
-    };
-    xhr.onerror = () => {
-      this.setState({
-        isError: true
-      })
-    };
-  }
-
-  selectPlayer(uuid) {
-    this.setState({lbFading: true});
+  const selectPlayer = uuid => {
+    setLbFading(true);
     setTimeout(() => {
-      this.setState({lbFading: false})
-      this.setState({selectedPlayer: uuid});
+      setLbFading(false);
+      setSelectedPlayer(uuid);
     }, 200)
   }
 
-  selectCategory(categoryId) {
-    this.setState({gridFading: true});
+  const selectCategory = categoryId => {
+    setGridFading(true);
     setTimeout(() => {
-      this.setState({gridFading: false})
-      this.setState({selectedCategory: categoryId});
+      setGridFading(false);
+      setSelectedCategory(categoryId);
     }, 200)
   }
 
-  goBackFromPs() {
-    if (this.state.selectedPlayer == null) return;
+  const goBackFromPs = () => {
+    if (!selectedPlayer) return;
 
-    this.setState({psFading: true});
+    setPsFading(true);
     setTimeout(() => {
-      this.setState({psFading: false})
-      this.setState({selectedPlayer: null});
+      setPsFading(false);
+      setSelectedPlayer(null);
     }, 200)
   }
 
-  goBackFromLb() {
-    if (this.state.selectedCategory == null) return;
+  const goBackFromLb = () => {
+    if (selectedCategory === null) return;
 
-    this.setState({lbFading: true, psFading: true});
+    setLbFading(true);
+    setPsFading(true);
     setTimeout(() => {
-      this.setState({lbFading: false, psFading: false})
-      this.setState({selectedCategory: null, selectedPlayer: null});
+      setLbFading(false);
+      setPsFading(false);
+      setSelectedCategory(null);
+      setSelectedPlayer(null);
     }, 200)
   }
 
-  render() {
-    return (
-      <div className="app">
-        <div className="app-header">
-          <img src={logo} alt="EasyRanking Logo" className="logo" onClick={() => this.goBackFromLb()}></img>
-        </div>
-        <div className="app-body">
-          {this.state.isError
-            ? <div className="error-panel">Couldn't retrieve data from server.</div>
-            : this.state.isLoading
-              ? <div className="loader-container"><div className="loader"></div></div>
-              : this.state.selectedPlayer != null
-                ? <PlayerStats
-                    name={this.players[this.state.selectedPlayer].name}
-                    uuid={this.state.selectedPlayer}
-                    fading={this.state.psFading}
-                    scores={this.categories.filter(c => 
-                      c.players.map(p => p.uuid).includes(this.state.selectedPlayer)).map(c => {
-                        return {
-                          category: c.name, 
-                          score: c.players.find(p => p.uuid === this.state.selectedPlayer).score,
-                          suffix: c.suffix
-                        }
-                      })}
-                    goBack={this.goBackFromPs}
-                    />
-                : this.state.selectedCategory != null
-                    ? <Leaderboard
-                        players={this.players}
-                        category={this.categories[this.state.selectedCategory]}
-                        fading={this.state.lbFading}
-                        selectPlayer={this.selectPlayer}
-                        goBack={this.goBackFromLb} />
-                    : <LeaderboardsGrid
-                        players={this.players}
-                        categories={this.categories}
-                        fading={this.state.gridFading}
-                        ref={this.refs.leaderboardGrid}
-                        selectCategory={this.selectCategory} />
-            }
-        </div>
-        <div className="app-footer"></div>
+  return (
+    <div className="app">
+      <div className="app-header">
+        <img src={logo} alt="EasyRanking Logo" className="logo" onClick={() => goBackFromLb()}></img>
       </div>
-    );
-  }
+      <div className="app-body">
+        {isError
+          ? <div className="error-panel">Couldn't retrieve data from server.</div>
+          : isLoading
+            ? <div className="loader-container"><div className="loader"></div></div>
+            : selectedPlayer
+              ? <PlayerStats
+                  name={players.current[selectedPlayer].name}
+                  uuid={selectedPlayer}
+                  fading={psFading}
+                  scores={categories.current
+                    .filter(c => c.players.map(p => p.uuid).includes(selectedPlayer))
+                    .map(c => {
+                      return {
+                        category: c.name, 
+                        score: c.players.find(p => p.uuid === selectedPlayer).score,
+                        suffix: c.suffix
+                      }
+                    })}
+                  goBack={goBackFromPs}
+                  />
+              : selectedCategory !== null
+                  ? <Leaderboard
+                      players={players.current}
+                      category={categories.current[selectedCategory]}
+                      fading={lbFading}
+                      selectPlayer={selectPlayer}
+                      goBack={goBackFromLb} />
+                  : <LeaderboardsGrid
+                      players={players.current}
+                      categories={categories.current}
+                      fading={gridFading}
+                      selectCategory={selectCategory} />
+          }
+      </div>
+      <div className="app-footer"></div>
+    </div>
+  );
 }
 
 export default App;
