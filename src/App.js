@@ -19,9 +19,8 @@ function App() {
   let players = useRef(null);
 
   useEffect(() => {
-    fetch('https://easyranking.chillstudio.it/get/data')
+    fetch('https://rankingapi.forgottenworld.it/api/get/data')
       .then(resp => {
-
         if (resp.status !== 200) {
           setIsError(true);
           return;

@@ -55,7 +55,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  background-color: rgba(255,255,255,0.2);
 }
 
 .app-body {
@@ -71,7 +70,8 @@
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-  font-size:0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   text-align: right;
   color: #aaaaaa;
   padding: 8px;
@@ -79,15 +79,15 @@
 
 .app-footer::after {
   content:"Credits";
-  transition: content linear 100ms;
 }
 
 .app-footer:hover::after {
+  font-weight: 400;
   content: "Credits: Simone Righi for the EasyRanking plugin, Giacomo Zama for this webpage, VizSensor contributors for the VizSensor React library, Minotar for their avatar API, and Madpixel Designs for the Minecrafter font";
 }
 
 .logo {
-  width: 360px;
+  width: 300px;
 }
 
 .leaderboards-grid {
@@ -95,7 +95,7 @@
   flex: 1 1 auto;
   flex-direction: column;
   transition: opacity linear 200ms;
-  max-width: 1600px;
+  max-width: 1400px;
 }
 
 .fading {
@@ -140,7 +140,7 @@
   margin: 8px;
   border-radius: 4px;
   background-color: red;
-  padding: 16px 8px 8px 8px;
+  padding: 12px 8px 8px 8px;
   transition: box-shadow ease-in 200ms, opacity ease-in 200ms;
   box-shadow: 0 4px 4px 0 rgba(0,0,0,0.4), 0 0 0 0px rgba(255,255,255,0);
 }
@@ -185,14 +185,15 @@
 }
 
 .leaderboards-top3 > div {
-  padding: 8px;
   display: flex;
+  padding: 0 8px 0 0;
   align-items: center;
   justify-content: space-between;
 }
 
 .leaderboards-top3 > div::before {
   content: "";
+  box-shadow: inset -8px 0 4px -4px rgba(0,0,0,0.2);
   display: flex;
 }
 
@@ -220,24 +221,34 @@
 }
 
 .leaderboards-top3 > div:nth-child(1)::before {
-  height: 40px;
-  flex: 0 0 40px;
-  margin-left: 0px;
-  margin-right: -10px;
-  background-image: url(img/medals/gold-medal.png);
+  height: 58px;
+  flex: 0 0 34px;
+  background: url(img/medals/gold-medal.png), rgba(0,0,0,0.2);
+  background-position: 8px;
+  background-repeat: no-repeat;
+  padding: 8px 18px 8px 8px;
+  border-radius: 0 100% 100% 0;
 }
 
 .leaderboards-top3 > div:nth-child(2)::before {
-  flex: 0 0 20px;
-  height: 20px;
-  margin-left:10px;
+  flex: 0 0 17px;
+  height: 29px;
+  background: url(img/medals/gold-medal.png), rgba(0,0,0,0.2);
+  background-position: 16px;
+  padding: 8px 24px 8px 8px;
+  border-radius: 0 100% 100% 0;
+  background-repeat: no-repeat;
   background-image: url(img/medals/silver-medal.png);
 }
 
 .leaderboards-top3 > div:nth-child(3)::before {
-  flex: 0 0 20px;
-  height: 20px;
-  margin-left:10px;
+  flex: 0 0 17px;
+  height: 29px;
+  background: url(img/medals/gold-medal.png), rgba(0,0,0,0.2);
+  background-position: 16px;
+  padding: 8px 24px 8px 8px;
+  border-radius: 0 100% 100% 0;
+  background-repeat: no-repeat;
   background-image: url(img/medals/bronze-medal.png);
 }
 
@@ -331,7 +342,7 @@
   font-size: 1rem;
   font-weight: 400;
   background-color: rgba(255,255,255,0.2);
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 4px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
@@ -410,7 +421,7 @@
 
 .leaderboard-list-item > .leaderboard-list-score {
   flex: 0 0 200px;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 4px 0;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
   background-color: rgba(255,255,255,0.2);
