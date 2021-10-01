@@ -6,7 +6,7 @@ import { separateThousands } from "../utils/Formatting";
 export default function Leaderboard(props) {
 
     return (
-        <div className={`leaderboard color${(props.category.id % 8) + 1} ${props.fading ? "fading" : ""}`}>
+        <div className={`leaderboard color${(props.category.id % 10) + 1} ${props.fading ? "fading" : ""}`}>
             <div className="leaderboard-header">
                 <div className="back-button-container"><div className="back-button" onClick={() => props.goBack()}>BACK</div></div>
                 <div className="leaderboard-title">{props.category.name}</div>
