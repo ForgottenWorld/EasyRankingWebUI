@@ -38,7 +38,10 @@ function App() {
             categories.current = data.categories;
       
             players.current = new Map();
-            data.players.forEach(p => players.current[p.uuid] = p);
+            data.players.forEach(p => {
+              p.name = p.name.replace(/§[0-9a-fk-or]§[0-9a-fk-or]#>[0-9a-fk-or] §[0-9a-fk-or]/, "");
+              players.current[p.uuid] = p;
+            });
             setIsLoading(false);
           },
           () => setIsError(true));
